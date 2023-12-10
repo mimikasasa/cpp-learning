@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int* p = NULL, * t;
+	int i;
+	p = new int[10];//new为动词，意为新开辟内存空间，这块内存空间有10块，存放的是整型数据
+	if (p==NULL)
+	{
+		cout << "allocation failure";//如果p还等于NULL说明分配失败，因为我们已经给p分配十块整型内存了
+		return 1;//return 1和return 0用处可类比，在主函数中出现return就结束这个函数，因此这一行就是提前退出这个函数，只不过返回值不是通常的0而是1
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		p[i] = 100 + i;
+	}
+	cout << endl;
+	for (t = p; t < p + 10; t++)//用t来代替p打印数据，方便后续删除p
+		cout << *t << "  ";
+	cout << endl;
+	delete[]p;//数组类型删除时在delete后加[],这样编译器才认识
+
+	system("pause");
+	return 0;
+}
