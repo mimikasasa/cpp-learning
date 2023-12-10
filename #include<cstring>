@@ -1,0 +1,50 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+int main()
+{
+	//1.字符串粘贴  strcpy_s
+	char x[] = "happy birthday to you";//length:21
+	char y[25];
+	char z[15];
+
+	strcpy_s(y,sizeof(y), x);//copy contents of x into y
+	cout << "the string in array x is:" << x << endl << "the string in array y is:" << y << endl;
+
+	strncpy_s(z,sizeof(z), x, 14);//copy first 14 characters of x into z; does not copy NULL character
+	z[14] = '\0';//append '0' to z's content  i.e. ncpy袁淑涵没copy'0' 要自己定义
+	cout << "the string in array z is:" << z << endl;
+
+	//2.字符串连接  strcat_s
+	char s1[20] = "happy ";//length:6
+	char s2[] = "new year ";
+	char s3[40] = "";
+
+	cout << "s1=" << s1 << endl << "s2=" << s2 << endl;
+
+	strcat_s(s1, s2);//将s2连接到s1后面
+	cout << "after strcat(s1,s2):" << endl << "s1=" << s1 << endl << "s2=" << s2 << endl;
+
+	strncat_s(s3, s1, 6);//将s1的长度为6的部分连接到s3后面
+	cout << "after strncat(s3,s1,6)" << endl << "s1=" << s1 << endl << "s3=" << s3 << endl;
+
+	strcat_s(s3, s1);
+	cout << "after strcat(s3,s1)" << endl << "s1=" << s1 <<endl << "s3=" << s3 << endl;
+
+	//3.字符串比较  strcmp
+	const char* m1 = "happy new year";
+	const char* m2 = "happy new year";
+	const char* m3 = "happy holidays";
+											
+	cout << "strcmp(m1,m2)=:	" << strcmp(m1, m2) << endl;
+	cout << "strcmp(m1,m3)=:	" << strcmp(m1, m3) << endl;
+	cout << "strcmp(m3,m1)=:	" << strcmp(m3, m1) << endl;
+
+	cout << "strncmp(m1,m3,6)=:  " << strncmp(m1, m3, 6) << endl;
+	cout << "strncmp(m1,m3,7)=:  " << strncmp(m1, m3, 7) << endl;
+	cout << "strncmp(m3,m1,7)=:  " << strncmp(m3, m1, 7) << endl;
+
+	system("pause");
+	return 0;
+}
